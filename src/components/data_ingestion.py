@@ -1,12 +1,11 @@
 import os
 import sys
-from src.logger import logging
-from src.pipeline import training_pipeline 
-from src.exception import CustomException
+from src.logger.logging import logging
+from src.exception.exception import CustomException
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
-from src.components.data_transformation import DataTransformation
+
 
 ## Intitialize the Data Ingetion Configuration
 
@@ -24,7 +23,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
         try:
-            df=pd.read_csv(os.path.join('notebooks/data','gemstone.csv'))
+            df=pd.read_csv(r"D:\F drive\learning\Data Science\FSDS_New_batch_2023\MLOPS_project\mlops_template\notebooks\data\gemstone.csv")
             logging.info('Dataset read as pandas Dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path),exist_ok=True)

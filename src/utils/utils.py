@@ -1,13 +1,11 @@
 import os
 import sys
 import pickle
-import numpy as np 
-import pandas as pd
 import math
-from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error, 
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 
-from src.exception import CustomException
-from src.logger import logging
+from src.exception.exception import CustomException
+from src.logger.logging import logging
 
 def save_object(file_path, obj):
     try:
@@ -40,8 +38,14 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
             rmse = math.sqrt(mse)
 
             report[list(models.keys())[i]] =  test_model_score
+            metrics = {
+                "mae":mae,
+                "rmse":rmse,
+                "mse":mse,
+                "r2Score":r2Score
+            }
 
-        return report, test_model_score
+        return report, metrics
 
     except Exception as e:
         logging.info('Exception occured during model training')

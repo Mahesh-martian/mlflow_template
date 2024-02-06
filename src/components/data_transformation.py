@@ -8,10 +8,10 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder,StandardScaler
 
-from src.exception import CustomException
-from src.logger import logging
+from src.exception.exception import CustomException
+from src.logger.logging import logging
 import os
-from src.utils import save_object
+from src.utils.utils import save_object
 
 @dataclass
 class DataTransformationConfig:
@@ -27,7 +27,7 @@ class DataTransformation:
             # Define which columns should be ordinal-encoded and which should be scaled
             categorical_cols = ['cut', 'color','clarity']
             numerical_cols = ['carat', 'depth','table', 'x', 'y', 'z']
-            col_names = [categorical_cols, numerical_cols]
+            col_names = {'categorical_cols' :categorical_cols,'numerical_cols' :numerical_cols}
             
             # Define the custom ranking for each ordinal variable
             cut_categories = ['Fair', 'Good', 'Very Good','Premium','Ideal']
@@ -60,13 +60,9 @@ class DataTransformation:
 
             num_pipeline_name = num_pipeline.steps
             cat_pipeline_name = cat_pipeline.steps
-            out_feature_names = preprocessor.get_feature_names_out()
-            ordinalencoder = cat_pipeline.named_steps['ordinalencoder']
 
             Data_Transformation_tags = {'num_pipeline_steps':num_pipeline_name, 
-                                        'cat_pipeline_steps':cat_pipeline_name,
-                                        'preprocessor_out_features': out_feature_names, 
-                                        'Ordinalencoder_categories': ordinalencoder}
+                                        'cat_pipeline_steps':cat_pipeline_name,}
 
 
             return col_names,Data_Transformation_tags, preprocessor
@@ -109,10 +105,10 @@ class DataTransformation:
 
             train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
-
+            preprocessor_path = self.data_transformation_config.preprocessor_obj_file_path
             save_object(
 
-                file_path=self.data_transformation_config.preprocessor_obj_file_path,
+                file_path=preprocessor_path,
                 obj=preprocessing_obj
 
             )
@@ -124,7 +120,8 @@ class DataTransformation:
                 self.data_transformation_config.preprocessor_obj_file_path,
                 col_names,
                 Data_Transformation_tags, 
-                preprocessing_obj
+                preprocessing_obj,
+                preprocessor_path
             )
             
         except Exception as e:

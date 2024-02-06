@@ -1,12 +1,9 @@
-# Basic Import
-import numpy as np
-import pandas as pd
+
 from sklearn.linear_model import LinearRegression, Ridge,Lasso,ElasticNet
-from src.exception import CustomException
-from src.logger import logging
-import mlflow 
-from src.utils import save_object
-from src.utils import evaluate_model
+from src.exception.exception import CustomException
+from src.logger.logging import logging
+from src.utils.utils import save_object
+from src.utils.utils import evaluate_model
 
 from dataclasses import dataclass
 import sys
@@ -37,7 +34,7 @@ class ModelTrainer:
             'Elasticnet':ElasticNet()
         }
 
-            model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)
+            model_report, metrics =evaluate_model(X_train,y_train,X_test,y_test,models)
             print(model_report)
             print('\n====================================================================================\n')
             logging.info(f'Model Report : {model_report}')
@@ -52,12 +49,13 @@ class ModelTrainer:
             print(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
             print('\n====================================================================================\n')
             logging.info(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            best_model_path = self.model_trainer_config.trained_model_file_path
 
             save_object(
-                file_path=self.model_trainer_config.trained_model_file_path,
+                file_path=best_model_path,
                 obj=best_model
             )
-            return models, model_report,best_model_score,best_model_name,best_model
+            return model_report,best_model_score,best_model_name,best_model_path, metrics
 
         except Exception as e:
             logging.info('Exception occured at Model Training')
