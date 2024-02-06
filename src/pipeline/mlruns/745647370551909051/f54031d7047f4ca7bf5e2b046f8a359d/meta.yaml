@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/F%20drive/learning/Data%20Science/FSDS_New_batch_2023/MLOPS_project/mlops_template/src/pipeline/mlruns/745647370551909051/f54031d7047f4ca7bf5e2b046f8a359d/artifacts
+deleted_time: 1707221820802
+end_time: 1707221112270
+entry_point_name: ''
+experiment_id: '745647370551909051'
+lifecycle_stage: deleted
+run_id: f54031d7047f4ca7bf5e2b046f8a359d
+run_name: victorious-koi-434
+run_uuid: f54031d7047f4ca7bf5e2b046f8a359d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707221112236
+status: 4
+tags: []
+user_id: Admin

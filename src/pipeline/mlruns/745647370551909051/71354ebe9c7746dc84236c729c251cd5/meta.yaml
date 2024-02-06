@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/F%20drive/learning/Data%20Science/FSDS_New_batch_2023/MLOPS_project/mlops_template/src/pipeline/mlruns/745647370551909051/71354ebe9c7746dc84236c729c251cd5/artifacts
+end_time: 1707221596370
+entry_point_name: ''
+experiment_id: '745647370551909051'
+lifecycle_stage: active
+run_id: 71354ebe9c7746dc84236c729c251cd5
+run_name: omniscient-stag-393
+run_uuid: 71354ebe9c7746dc84236c729c251cd5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1707221590363
+status: 3
+tags: []
+user_id: Admin
