@@ -1,0 +1,15 @@
+pandas
+numpy
+seaborn
+mlflow
+cloudpickle
+lz4
+pathlib
+psutil
+scikit-learn
+fancyimpute
+scikit-opt
+mice
+MissForest
+
+-e .
