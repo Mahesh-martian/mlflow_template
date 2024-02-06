@@ -58,6 +58,3 @@ if __name__=='__main__':
         mlflow.log_metric('best_model_'+best_model_name, best_model_score)
 
         mlflow.log_artifact(best_model_path, 'best_model_'+best_model_name)
-
-
-
